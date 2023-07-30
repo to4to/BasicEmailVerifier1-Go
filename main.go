@@ -1,23 +1,30 @@
 package main
 
-import(
+import (
 	"bufio"
+	"errors"
+	"fmt"
 	"os"
 )
 
-func main(){
-	scanner:=bufio.NewScanner(os.Stdin)
+func main() {
 
-for scanner.Scan(){
+	scanner := bufio.NewScanner(os.Stdin)
+	fmt.Println("domain, hasMX,hasSPF,spfRecord,hasDmarc,dmarcRecord")
+	for scanner.Scan() {
+		checkdomain(scanner.Text())
+	}
+	if scanner.Err()!=nil{
+		Err(scanner.Err())
+	}
+}
 
-checkdomain(scanner.Text())
+func checkdomain(domain string) {
+   
 
 }
-}
 
+func Err(err error) error {
 
-
-func checkdomain(domain string){
-
-
+	return fmt.Errorf("Error Occured", err)
 }
